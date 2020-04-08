@@ -9,41 +9,42 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-       <powermock.version>1.7.0RC4</powermock.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <powermock.version>1.7.0RC4</powermock.version>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
 
     <dependencies>
-	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
-	<dependency>
-    		<groupId>org.openjfx</groupId>
-    		<artifactId>javafx</artifactId>
-    		<version>11</version>
-    		<type>pom</type>
-	</dependency>
-
-	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-base</artifactId>
-	    <version>11</version>
-	</dependency>
-
-
-	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-fxml</artifactId>
-	    <version>11</version>
-	</dependency>
-
-	<!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
         <dependency>
-	    <groupId>org.controlsfx</groupId>
-	    <artifactId>controlsfx</artifactId>
-	    <version>11.0.1</version>
-	</dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>11</version>
+            <type>pom</type>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>11</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -61,22 +62,22 @@
         </dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/org.testfx/testfx-core -->
-	<dependency>
-	    <groupId>org.testfx</groupId>
-	    <artifactId>testfx-core</artifactId>
-	    <version>4.0.16-alpha</version>
-	    <scope>test</scope>
-	</dependency>
+        <!-- https://mvnrepository.com/artifact/org.testfx/testfx-core -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit -->
-	<dependency>
-	    <groupId>org.testfx</groupId>
-	    <artifactId>testfx-junit</artifactId>
-	    <version>4.0.15-alpha</version>
-	    <scope>test</scope>
-	</dependency>
+        <!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.15-alpha</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
@@ -99,14 +100,14 @@
             <scope>test</scope>
         </dependency>
 
- 	<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-	<dependency>
-	    <groupId>org.jacoco</groupId>
-	    <artifactId>jacoco-maven-plugin</artifactId>
-	    <version>0.8.5</version>
-	</dependency>
+        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.5</version>
+        </dependency>
 
-   </dependencies>
+    </dependencies>
 
 
     <build>
@@ -121,17 +122,17 @@
 
         <plugins>
 
-           <!-- From https://github.com/openjfx/javafx-maven-plugin -->
-           <plugin>
-              <groupId>org.openjfx</groupId>
-                 <artifactId>javafx-maven-plugin</artifactId>
-                 <version>0.0.4</version>
-                 <configuration>
-                   <mainClass>App</mainClass>
-                 </configuration>
-           </plugin>
+            <!-- From https://github.com/openjfx/javafx-maven-plugin -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.4</version>
+                <configuration>
+                    <mainClass>fr.univ_amu.iut.App</mainClass>
+                </configuration>
+            </plugin>
 
-           <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
@@ -140,27 +141,27 @@
                 </configuration>
             </plugin>
 
-      <plugin>
-        <!-- From https://mkyong.com/maven/maven-jacoco-code-coverage-example/ -->
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <!-- attached to Maven test phase -->
-          <execution>
-            <id>report</id>
-            <phase>test</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+            <plugin>
+                <!-- From https://mkyong.com/maven/maven-jacoco-code-coverage-example/ -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!-- attached to Maven test phase -->
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
 
         </plugins>
