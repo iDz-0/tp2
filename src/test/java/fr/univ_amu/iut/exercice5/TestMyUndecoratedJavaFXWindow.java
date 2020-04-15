@@ -1,92 +1,93 @@
 package fr.univ_amu.iut.exercice5;
 
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
 import java.util.concurrent.TimeoutException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TestMyUndecoratedJavaFXWindow extends ApplicationTest {
+@Disabled
+@ExtendWith(ApplicationExtension.class)
+public class TestMyUndecoratedJavaFXWindow {
 
-    @Ignore
+    Stage stage;
+
+    @Start
+    public void start(Stage stage) throws Exception {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                TestMyUndecoratedJavaFXWindow.this.stage = new Stage(StageStyle.UNDECORATED);
+                try {
+                    FxToolkit.setupStage((sta) -> {
+                        try {
+                            new MyUndecoratedJavaFXWindow().start(TestMyUndecoratedJavaFXWindow.this.stage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @AfterEach
+    public void afterEachTest(FxRobot robot) throws TimeoutException {
+        FxToolkit.cleanupStages();
+        Platform.runLater(() -> stage.close());
+//        robot.release(new KeyCode[]{});
+//        robot.release(new MouseButton[]{});
+    }
+
+    @Disabled
     @Test
     public void should_initialize_stage_is_not_showing() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().isShowing()).isFalse();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertFalse(stage.isShowing());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_correct_title() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getTitle()).isEqualTo("Undecorated Useless JavaFX Window");
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals("Undecorated Useless JavaFX Window", stage.getTitle());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_is_always_on_top() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().alwaysOnTopProperty().get()).isTrue();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertTrue(stage.alwaysOnTopProperty().get());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_is_not_resizable() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().resizableProperty().get()).isFalse();
-        } catch (TimeoutException e) {
-            fail();
-        }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_height_of_400() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getHeight()).isEqualTo(400);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(400, stage.getHeight());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_width_of_800() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getWidth()).isEqualTo(800);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(800, stage.getWidth());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_is_undecorated() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getStyle()).isEqualTo(StageStyle.UNDECORATED);
-        } catch (TimeoutException e) {
-            fail();
-        }
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        new MyUndecoratedJavaFXWindow().start(stage);
+        assertEquals(StageStyle.UNDECORATED, stage.getStyle());
     }
 
 }

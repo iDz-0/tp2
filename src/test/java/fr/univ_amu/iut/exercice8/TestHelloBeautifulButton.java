@@ -1,67 +1,91 @@
 package fr.univ_amu.iut.exercice8;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import org.junit.Ignore;
-import org.junit.Test;
+import javafx.stage.StageStyle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
-
+import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 import java.util.concurrent.TimeoutException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
-
+@Disabled
+@ExtendWith(ApplicationExtension.class)
 public class TestHelloBeautifulButton extends ApplicationTest {
 
-    @Ignore
+    Stage stage;
+
+    @Start
+    public void start(Stage stage) throws Exception {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                TestHelloBeautifulButton.this.stage = new Stage(StageStyle.UNDECORATED);
+                try {
+                    FxToolkit.setupStage((sta) -> {
+                        try {
+                            new HelloBeautifulButton().start(TestHelloBeautifulButton.this.stage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @AfterEach
+    public void afterEachTest(FxRobot robot) throws TimeoutException {
+        FxToolkit.cleanupStages();
+        robot.release(new KeyCode[]{});
+        robot.release(new MouseButton[]{});
+    }
+
+    @Disabled
     @Test
     public void should_initialize_stage_with_correct_title() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getTitle()).isEqualTo("Hello !");
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals("Hello !", stage.getTitle());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_height_of_250() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getHeight()).isEqualTo(250);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(250, stage.getHeight());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_width_of_250() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getWidth()).isEqualTo(250);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(250, stage.getWidth());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_button_with_text_hello() {
-        // then:
         verifyThat("#buttonHello", hasText("Hello !"));
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_useless_button() {
         verifyThat("#buttonHello", (Button node) -> node.getOnAction() == null);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_with_a_graphic() {
         verifyThat("#buttonHello", (Button node) -> node.getGraphic() instanceof ImageView);
@@ -70,18 +94,10 @@ public class TestHelloBeautifulButton extends ApplicationTest {
         verifyThat("#buttonHello", (Button node) -> ((ImageView) node.getGraphic()).getImage().getWidth() == 150);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void should_initialize_stage_is_showing() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().isShowing()).isTrue();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertTrue(stage.isShowing());
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        new HelloBeautifulButton().start(stage);
-    }
 }

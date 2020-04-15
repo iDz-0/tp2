@@ -1,12 +1,18 @@
 package fr.univ_amu.iut.exercice13;
 
 import javafx.stage.Stage;
-import org.testfx.framework.junit.ApplicationTest;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
-public class TestBouncingBall extends ApplicationTest {
+@Disabled
+@ExtendWith(ApplicationExtension.class)
+public class TestBouncingBall {
 
-    @Override
+    @Start
     public void start(Stage stage) throws Exception {
         new BouncingBall().start(stage);
     }
+
 }

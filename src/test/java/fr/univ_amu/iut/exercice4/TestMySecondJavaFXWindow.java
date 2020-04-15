@@ -1,80 +1,77 @@
 package fr.univ_amu.iut.exercice4;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
 import java.util.concurrent.TimeoutException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class TestMySecondJavaFXWindow extends ApplicationTest {
+@Disabled
+@ExtendWith(ApplicationExtension.class)
+public class TestMySecondJavaFXWindow {
 
-    @Ignore
+    Stage stage;
+
+    @BeforeEach
+    public void setUpClass() throws Exception {
+        ApplicationTest.launch(MySecondJavaFXWindow.class);
+    }
+
+    @Start
+    public void start(Stage stage) throws Exception {
+        this.stage = stage;
+        stage.show();
+    }
+
+    @AfterEach
+    public void afterEachTest(FxRobot robot) throws TimeoutException {
+        FxToolkit.cleanupStages();
+        robot.release(new KeyCode[]{});
+        robot.release(new MouseButton[]{});
+    }
+
     @Test
     public void should_initialize_stage_with_correct_title() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getTitle()).isEqualTo("Second Useless JavaFX Window");
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals("Second Useless JavaFX Window", stage.getTitle());
     }
 
-    @Ignore
     @Test
     public void should_initialize_stage_is_always_on_top() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().alwaysOnTopProperty().get()).isTrue();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertTrue(stage.alwaysOnTopProperty().get());
     }
 
-    @Ignore
     @Test
     public void should_initialize_stage_is_not_resizable() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().resizableProperty().get()).isFalse();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertFalse(stage.resizableProperty().get());
     }
 
-    @Ignore
     @Test
     public void should_initialize_stage_with_height_of_400() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getHeight()).isEqualTo(400);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(400, stage.getHeight());
     }
 
-    @Ignore
     @Test
     public void should_initialize_stage_with_width_of_800() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().getWidth()).isEqualTo(800);
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertEquals(800, stage.getWidth());
     }
 
-    @Ignore
     @Test
     public void should_initialize_stage_is_showing() {
-        try {
-            assertThat(FxToolkit.registerPrimaryStage().isShowing()).isTrue();
-        } catch (TimeoutException e) {
-            fail();
-        }
+        assertTrue(stage.isShowing());
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        new MySecondJavaFXWindow().start(stage);
-    }
 }

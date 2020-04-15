@@ -1,12 +1,19 @@
 package fr.univ_amu.iut.exercice12;
 
 import javafx.stage.Stage;
-import org.testfx.framework.junit.ApplicationTest;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
-public class TestPalette extends ApplicationTest {
+@Disabled
+@ExtendWith(ApplicationExtension.class)
+public class TestPalette {
 
-    @Override
+    @Start
     public void start(Stage stage) throws Exception {
         new Palette().start(stage);
     }
+
 }

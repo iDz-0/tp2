@@ -1,70 +1,77 @@
 package fr.univ_amu.iut.exercice2;
 
-import fr.univ_amu.iut.exercice3.WhoIsWho;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.Start;
 
 import java.io.PrintStream;
+import java.util.concurrent.TimeoutException;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class TestApplicationLifeCycle extends ApplicationTest {
+@Disabled
+@ExtendWith(ApplicationExtension.class)
+public class TestApplicationLifeCycle {
 
-    private PrintStream out;
+    @Mock PrintStream out;
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-        FxToolkit.registerPrimaryStage();
-        FxToolkit.setupApplication(WhoIsWho.class);
+    @BeforeEach
+    public void setUpClass() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        System.setOut(out);
+        ApplicationTest.launch(ApplicationLifeCycle.class);
     }
 
-    @Ignore
+    @Start
+    public void start(Stage stage) throws Exception {
+        stage.show();
+    }
+
+    @AfterEach
+    public void afterEachTest(FxRobot robot) throws TimeoutException {
+        FxToolkit.cleanupStages();
+        robot.release(new KeyCode[]{});
+        robot.release(new MouseButton[]{});
+    }
+
+    @Disabled
     @Test
     public void constructor() throws Exception {
-        PrintStream out = mock(PrintStream.class);
-        System.setOut(out);
-        new ApplicationLifeCycle();
         verify(out).println("constructeur ApplicationLifeCycle()");
     }
 
-
-    @Ignore
+    @Disabled
     @Test
-    public void init() throws Exception {
-        PrintStream out = mock(PrintStream.class);
-        System.setOut(out);
-        new ApplicationLifeCycle().init();
+    public void init() {
         verify(out).println("init()");
     }
 
-    @Ignore
+    @Disabled
     @Test
-    public void stop() throws Exception {
-        PrintStream out = mock(PrintStream.class);
-        System.setOut(out);
-        new ApplicationLifeCycle().stop();
+    public void test_stop() throws Exception {
+        FxToolkit.setupApplication(ApplicationLifeCycle.class).stop();
         verify(out).println("stop()");
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void test_life_cycle_output() {
         verify(out).println("constructeur ApplicationLifeCycle()");
         verify(out).println("start() : avant show stage");
         verify(out).println("start() : après show stage");
     }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        out = mock(PrintStream.class);
-        System.setOut(out);
-        new ApplicationLifeCycle().start(stage);
-    }
-
 
 }
