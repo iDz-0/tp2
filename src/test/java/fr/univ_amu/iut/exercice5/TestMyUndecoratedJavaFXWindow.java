@@ -1,9 +1,13 @@
 package fr.univ_amu.iut.exercice5;
 
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
@@ -45,8 +49,8 @@ public class TestMyUndecoratedJavaFXWindow {
     public void afterEachTest(FxRobot robot) throws TimeoutException {
         FxToolkit.cleanupStages();
         Platform.runLater(() -> stage.close());
-//        robot.release(new KeyCode[]{});
-//        robot.release(new MouseButton[]{});
+        robot.release(new KeyCode[]{});
+        robot.release(new MouseButton[]{});
     }
 
     @Disabled

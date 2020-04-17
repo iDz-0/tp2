@@ -3,10 +3,10 @@ package fr.univ_amu.iut.exercice2;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -19,7 +19,6 @@ import org.testfx.framework.junit5.Start;
 import java.io.PrintStream;
 import java.util.concurrent.TimeoutException;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @Disabled
@@ -47,7 +46,6 @@ public class TestApplicationLifeCycle {
         robot.release(new MouseButton[]{});
     }
 
-    @Disabled
     @Test
     public void constructor() throws Exception {
         verify(out).println("constructeur ApplicationLifeCycle()");

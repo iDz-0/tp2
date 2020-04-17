@@ -3,16 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
+
 <groupId>fr.univ_amu.iut</groupId>
 <artifactId>tp2</artifactId>
 <packaging>jar</packaging>
 <version>1.0-SNAPSHOT</version>
-<name>Tp 2</name>
+<name>tp2</name>
 <url>http://maven.apache.org</url>
-
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 </properties>
 
 <dependencies>
@@ -24,50 +23,26 @@
 
     <dependency>
         <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>win</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>mac</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>linux</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>win</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>mac</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>linux</classifier>
-    </dependency>
-
-    <dependency>
-        <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-        <version>11</version>
+        <version>12.0.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-graphics</artifactId>
+        <version>12.0.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-media</artifactId>
+        <version>12.0.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.6.2</version>
     </dependency>
 
     <dependency>
@@ -78,16 +53,17 @@
     </dependency>
 
     <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-engine</artifactId>
+        <version>1.6.2</version>
+        <scope>compile</scope>
+    </dependency>
+
+    <dependency>
         <groupId>org.junit.vintage</groupId>
         <artifactId>junit-vintage-engine</artifactId>
         <version>5.6.2</version>
         <scope>test</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.6.2</version>
     </dependency>
 
     <dependency>
@@ -136,7 +112,7 @@
         <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>1.2.1</version>
+            <version>1.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -166,8 +142,12 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.0</version>
+            <version>3.0.0-M4</version>
+            <configuration>
+                <argLine>--add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED</argLine>
+            </configuration>
         </plugin>
+
     </plugins>
 </build>
 

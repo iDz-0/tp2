@@ -8,17 +8,19 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+
 import java.io.PrintStream;
 import java.util.concurrent.TimeoutException;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -26,7 +28,7 @@ import static org.testfx.util.NodeQueryUtils.hasText;
 
 @Disabled
 @ExtendWith(ApplicationExtension.class)
-public class TestHelloBeautifulUsefulButton extends ApplicationTest {
+public class TestHelloBeautifulUsefulButton {
 
     Stage stage;
 
@@ -93,10 +95,10 @@ public class TestHelloBeautifulUsefulButton extends ApplicationTest {
 
     @Disabled
     @Test
-    public void should_button_click_show_useless_text() {
+    public void should_button_click_show_useless_text(FxRobot robot) {
         PrintStream out = mock(PrintStream.class);
         System.setOut(out);
-        clickOn("#buttonHello");
+        robot.clickOn("#buttonHello");
         verify(out).println("Bouton actionné");
     }
 
