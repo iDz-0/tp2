@@ -3,8 +3,9 @@
 ### IUT d’Aix-Marseille – Département Informatique Aix-en-Provence
 
 * **Cours:** [M2105](http://cache.media.enseignementsup-recherche.gouv.fr/file/25/09/7/PPN_INFORMATIQUE_256097.pdf)
-* **Responsable:** [Sébastien NEDJAR](mailto:sebastien.nedjar@univ-amu.fr)
-* **Enseignants:** [Sébastien NEDJAR](mailto:sebastien.nedjar@univ-amu.fr), [Petru Valicov](mailto:petru.valicov@univ-amu.fr), [Cyril Pain-Barre](mailto:cyril.pain-barre@univ-amu.fr)
+* **Responsable intérimaire:** [Cyril Pain-Barre](mailto:cyril.pain-barre@univ-amu.fr)
+* **Responsable habituel:** [Sébastien NEDJAR](mailto:sebastien.nedjar@univ-amu.fr)
+* **Enseignants actuels:** [Sophie Nabitz](mailto:sophie.nabitz@univ-avignon.fr), [Cyril Pain-Barre](mailto:cyril.pain-barre@univ-amu.fr)
 * **Besoin d'aide ?**
     * La page [Piazza de ce cours](https://piazza.com/univ-amu.fr/spring2018/m2105/home).
     * Consulter et/ou créér des [issues](https://github.com/IUTInfoAix-M2105/tp2/issues).
@@ -22,7 +23,7 @@ Ce TP est l'occasion d'un premier contact avec cet environnement.
 
 La première chose que vous allez faire est de créer un fork d'un dépôt. Pour ce faire, rendez-vous sur le lien suivant : 
 
-[https://classroom.github.com/assignment-invitations/3caf02cc2527d1e1f8ea209cccbbe0ee](https://classroom.github.com/assignment-invitations/3caf02cc2527d1e1f8ea209cccbbe0ee) 
+[https://classroom.github.com/a/axCWCmgV](https://classroom.github.com/a/axCWCmgV) 
 
 Comme pour le TP1, GitHub va vous créer un dépôt contenant un fork du dépôt 'IUTInfoAix-m2105/tp2' et s'appellant 'IUTInfoAix-m2105/tp2-votreUsername'. 
 Vous apparaîtrez automatiquement comme contributeur de ce projet pour y pousser votre travail.
