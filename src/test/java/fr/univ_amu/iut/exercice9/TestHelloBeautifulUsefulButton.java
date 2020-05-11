@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
-@Disabled
+//@Disabled
 @ExtendWith(ApplicationExtension.class)
 public class TestHelloBeautifulUsefulButton {
 
@@ -60,31 +60,31 @@ public class TestHelloBeautifulUsefulButton {
         robot.release(new MouseButton[]{});
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_stage_with_correct_title() {
         assertEquals("Hello !", stage.getTitle());
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_stage_with_height_of_250() {
         assertEquals(250, stage.getHeight());
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_stage_with_width_of_250() {
         assertEquals(250, stage.getWidth());
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_button_with_text_hello() {
         verifyThat("#buttonHello", hasText("Hello !"));
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_stage_with_a_graphic() {
         verifyThat("#buttonHello", (Button node) -> node.getGraphic() instanceof ImageView);
@@ -93,7 +93,7 @@ public class TestHelloBeautifulUsefulButton {
         verifyThat("#buttonHello", (Button node) -> ((ImageView) node.getGraphic()).getImage().getWidth() == 150);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_button_click_show_useless_text(FxRobot robot) {
         PrintStream out = mock(PrintStream.class);
@@ -102,7 +102,7 @@ public class TestHelloBeautifulUsefulButton {
         verify(out).println("Bouton actionné");
     }
 
-    @Disabled
+    //@Disabled
     @Test
     public void should_initialize_stage_is_showing() {
         assertTrue(stage.isShowing());
